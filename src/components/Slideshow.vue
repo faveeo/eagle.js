@@ -237,7 +237,6 @@ export default {
       Options.plugins.forEach(plugin => {
         plugin[0].init(this, plugin[1])
       })
-      
     },
     unregisterPlugins: function () {
       Options.plugins.forEach(plugin => {
