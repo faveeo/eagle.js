@@ -11,6 +11,28 @@
 
 
 
+
+
+
+
+
+.eg-code-comment {
+  display: inline-block
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .eg-modal {
   position: absolute;
   top: 0;
@@ -19,6 +41,15 @@
   height: 100%;
 }
 
+
+
+
+
+
+
+
+
+/*# sourceMappingURL=Timer.vue.map */
 @import url(https://fonts.googleapis.com/css?family=Source+Code+Pro);
 .eg-slideshow {
   margin-top: 0;
@@ -99,74 +130,6 @@
 .eg-code-block .eg-code-comment[data-v-29468740] {
   z-index: 10 !important; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.eg-code-comment {
-  display: inline-block
-}
-
-
-
-
-
-
-
-
-
-/*# sourceMappingURL=Timer.vue.map */
-.eg-radio[data-v-872b59a6] {
-  /* The slider */ }
-  .eg-radio p[data-v-872b59a6] {
-    display: inline; }
-  .eg-radio .radiobutton[data-v-872b59a6] {
-    position: relative;
-    display: inline-block;
-    width: 1em;
-    height: 1em; }
-  .eg-radio .radio[data-v-872b59a6] {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 0.5em; }
-  .eg-radio .radiodot[data-v-872b59a6] {
-    position: absolute;
-    cursor: pointer;
-    content: "";
-    height: 0em;
-    width: 0em;
-    left: 0.5em;
-    bottom: 0.5em;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-    border-radius: 50%; }
-  .eg-radio .radiodot.checked[data-v-872b59a6] {
-    height: .9em;
-    width: .9em;
-    left: 0.05em;
-    bottom: 0.05em; }
-
 .eg-switch[data-v-14b66238] {
   /* The slider */ }
   .eg-switch p[data-v-14b66238] {
@@ -205,4 +168,41 @@
     -webkit-transform: translateX(1em);
     -ms-transform: translateX(1em);
     transform: translateX(1em); }
+
+.eg-radio[data-v-872b59a6] {
+  /* The slider */ }
+  .eg-radio p[data-v-872b59a6] {
+    display: inline; }
+  .eg-radio .radiobutton[data-v-872b59a6] {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em; }
+  .eg-radio .radio[data-v-872b59a6] {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 0.5em; }
+  .eg-radio .radiodot[data-v-872b59a6] {
+    position: absolute;
+    cursor: pointer;
+    content: "";
+    height: 0em;
+    width: 0em;
+    left: 0.5em;
+    bottom: 0.5em;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%; }
+  .eg-radio .radiodot.checked[data-v-872b59a6] {
+    height: .9em;
+    width: .9em;
+    left: 0.05em;
+    bottom: 0.05em; }
 

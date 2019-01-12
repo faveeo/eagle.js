@@ -1,8 +1,11 @@
 <template lang='pug'>
 eg-transition(:enter='enterTransition', :leave='leaveTransition')
   .eg-slide(v-if='active')
+    .eg-background
+      slot(name="background")
     .eg-slide-content
       slot
+      
 </template>
 
 <script>
@@ -18,7 +21,8 @@ export default {
     leaveNext: {default: null},
     steps: {default: 1},
     mouseNavigation: {default: true},
-    keyboardNavigation: {default: true}
+    keyboardNavigation: {default: true},
+    fetchTime : {default: function() {}}
   },
   data: function () {
     return {

@@ -77,13 +77,7 @@ export default {
     window.addEventListener('resize', this.handleResize)
 
     // PRELOAD PICTURES IF ANY
-    if (this.preloadedImages) {
-      setTimeout(function () {
-        for (var image in self.preloadedImages) {
-          (new Image()).src = self.preloadedImages[image]
-        }
-      }, 1000)
-    }
+    this.preloadPictures();
 
     // LAST INITIALIZATIONS
     this.handleResize()
@@ -102,6 +96,15 @@ export default {
     clearInterval(this.timerUpdater)
   },
   methods: {
+    preloadPictures: function() {
+      if (this.preloadedImages) {
+        setTimeout(function () {
+          for (var image in self.preloadedImages) {
+            (new Image()).src = self.preloadedImages[image]
+          }
+        }, 1000)
+      }
+    },
     changeDirection: function (direction) {
       this.slides.forEach(function (slide) {
         slide.direction = direction
@@ -177,7 +180,11 @@ export default {
           width = document.documentElement.clientWidth
           height = document.documentElement.clientHeight
         }
-        self.$el.style.fontSize = (0.04 * Math.min(height, width)) + 'px'
+        if (self.$el && self.$el.style) {
+          self.$el.style.fontSize = (0.04 * Math.min(height, width)) + 'px'
+        } else {
+          console.error("Element ", self.$el , " is not mounted yet");
+        }
       }, 16)()
     },
     handleZoom: function (remove) {
@@ -323,6 +330,10 @@ export default {
       }
     },
     updateSlideshowVisibility: function (val) {
+      if (!self.$el || !self.$el.style) {      
+          console.error("Element ", self.$el , " is not mounted yet");
+          return ;
+        }
       if (val) {
         this.$el.style.visibility = 'visible'
       } else {

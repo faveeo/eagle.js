@@ -1,5 +1,5 @@
 /*
- * eagle.js v0.4.4
+ * eagle.js v0.4.5
  *
  * @license
  * Copyright 2017-2018, Zulko
@@ -91,13 +91,7 @@ var Slideshow = {
     }
     window.addEventListener('resize', this.handleResize);
 
-    if (this.preloadedImages) {
-      setTimeout(function () {
-        for (var image in self.preloadedImages) {
-          new Image().src = self.preloadedImages[image];
-        }
-      }, 1000);
-    }
+    this.preloadPictures();
 
     this.handleResize();
     this.timerUpdater = setInterval(function () {
@@ -115,6 +109,15 @@ var Slideshow = {
     clearInterval(this.timerUpdater);
   },
   methods: {
+    preloadPictures: function preloadPictures() {
+      if (this.preloadedImages) {
+        setTimeout(function () {
+          for (var image in self.preloadedImages) {
+            new Image().src = self.preloadedImages[image];
+          }
+        }, 1000);
+      }
+    },
     changeDirection: function changeDirection(direction) {
       this.slides.forEach(function (slide) {
         slide.direction = direction;
@@ -186,7 +189,11 @@ var Slideshow = {
           width = document.documentElement.clientWidth;
           height = document.documentElement.clientHeight;
         }
-        self.$el.style.fontSize = 0.04 * Math.min(height, width) + 'px';
+        if (self.$el && self.$el.style) {
+          self.$el.style.fontSize = 0.04 * Math.min(height, width) + 'px';
+        } else {
+          console.error("Element ", self.$el, " is not mounted yet");
+        }
       }, 16)();
     },
     handleZoom: function handleZoom(remove) {
@@ -332,6 +339,10 @@ var Slideshow = {
       }
     },
     updateSlideshowVisibility: function updateSlideshowVisibility(val) {
+      if (!self.$el || !self.$el.style) {
+        console.error("Element ", self.$el, " is not mounted yet");
+        return;
+      }
       if (val) {
         this.$el.style.visibility = 'visible';
       } else {
@@ -393,7 +404,7 @@ var Slideshow = {
 };
 
 var Slide = { render: function render() {
-    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('eg-transition', { attrs: { "enter": _vm.enterTransition, "leave": _vm.leaveTransition } }, [_vm.active ? _c('div', { staticClass: "eg-slide" }, [_c('div', { staticClass: "eg-slide-content" }, [_vm._t("default")], 2)]) : _vm._e()]);
+    var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('eg-transition', { attrs: { "enter": _vm.enterTransition, "leave": _vm.leaveTransition } }, [_vm.active ? _c('div', { staticClass: "eg-slide" }, [_c('div', { staticClass: "eg-background" }, [_vm._t("background")], 2), _c('div', { staticClass: "eg-slide-content" }, [_vm._t("default")], 2)]) : _vm._e()]);
   }, staticRenderFns: [],
   name: 'slide',
   props: {
@@ -406,7 +417,8 @@ var Slide = { render: function render() {
     leaveNext: { default: null },
     steps: { default: 1 },
     mouseNavigation: { default: true },
-    keyboardNavigation: { default: true }
+    keyboardNavigation: { default: true },
+    fetchTime: { default: function _default() {} }
   },
   data: function data() {
     return {
