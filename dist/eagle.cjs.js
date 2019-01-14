@@ -130,7 +130,7 @@ var Slideshow = {
       });
       this.$root.direction = direction;
     },
-    nextStep: function nextStep(fromMessage) {
+    nextStep: function nextStep(fromMessage, callback) {
       this.changeDirection('next');
       var self = this;
       this.$nextTick(function () {
@@ -139,12 +139,13 @@ var Slideshow = {
         } else {
           self.step++;
         }
+        if (callback) callback();
       });
       if (!fromMessage) {
         this.postMessage('{"method": "nextStep"}');
       }
     },
-    previousStep: function previousStep(fromMessage) {
+    previousStep: function previousStep(fromMessage, callback) {
       this.changeDirection('prev');
       var self = this;
       this.$nextTick(function () {
@@ -153,6 +154,7 @@ var Slideshow = {
         } else {
           self.step--;
         }
+        callback();
       });
       if (!fromMessage) {
         this.postMessage('{"method": "previousStep"}');

@@ -111,7 +111,7 @@ export default {
       })
       this.$root.direction = direction
     },
-    nextStep: function (fromMessage) {
+    nextStep: function (fromMessage, callback) {
       this.changeDirection('next')
       var self = this
       this.$nextTick(function () {
@@ -120,12 +120,15 @@ export default {
         } else {
           self.step++
         }
+        if (callback)
+          callback();
       })
+      
       if (!fromMessage) {
         this.postMessage('{"method": "nextStep"}')
       }
     },
-    previousStep: function (fromMessage) {
+    previousStep: function (fromMessage, callback) {
       this.changeDirection('prev')
       var self = this
       this.$nextTick(function () {
@@ -134,6 +137,7 @@ export default {
         } else {
           self.step--
         }
+        callback();
       })
       if (!fromMessage) {
         this.postMessage('{"method": "previousStep"}')
