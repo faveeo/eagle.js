@@ -1,5 +1,5 @@
 /*
- * eagle.js v0.4.5
+ * eagle.js v0.4.6
  *
  * @license
  * Copyright 2017-2018, Zulko
@@ -141,6 +141,7 @@ var Slideshow = {
         }
         if (callback) callback();
       });
+
       if (!fromMessage) {
         this.postMessage('{"method": "nextStep"}');
       }
